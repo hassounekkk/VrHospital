@@ -7,10 +7,21 @@ public class HideButton : MonoBehaviour
 {
     public Button button;
     public Text text;
-   public void hide()
+    ObjectController[] objectController;
+
+    private void Awake()
+    {
+          objectController = FindObjectsOfType<ObjectController>();
+    }
+    public void hide()
     {
         button.gameObject.SetActive(false);
         text.gameObject.SetActive(true);
 
+      foreach(ObjectController o in objectController)
+        o.gameObject.GetComponent<ObjectController>().enabled = true;
+
     }
+
+   
 }
